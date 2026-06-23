@@ -1,0 +1,337 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────
+ *  MM Sri Lanka – Custom Theme (Tailwind CSS v4)
+ *
+ *  In Tailwind v4, theming is done via @theme blocks.
+ *  This registers custom colors, fonts, animations, and
+ *  spacing as first-class Tailwind utilities.
+ * ────────────────────────────────────────────────────── */
+
+@theme inline {
+  /* ─── Custom Colors ──────────────────────────────── */
+  --color-navy-900: #0a0e1a;
+  --color-navy-800: #0f1629;
+  --color-navy-700: #1a1f3a;
+  --color-navy-600: #252b4a;
+
+  --color-electric-blue: #00d4ff;
+  --color-electric-blue-light: #33ddff;
+  --color-electric-blue-dark: #00a8cc;
+
+  --color-neon-green: #00ff88;
+  --color-neon-green-light: #33ffaa;
+  --color-neon-green-dark: #00cc6a;
+
+  --color-accent-purple: #7c3aed;
+  --color-accent-purple-light: #8b5cf6;
+  --color-accent-purple-dark: #6d28d9;
+
+  --color-surface-dark: #111827;
+  --color-surface: #1f2937;
+  --color-surface-light: #374151;
+  --color-surface-lighter: #4b5563;
+
+  /* ─── Fonts ──────────────────────────────────────── */
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-heading: var(--font-outfit), "Outfit", system-ui, sans-serif;
+
+  /* ─── Custom Animations ──────────────────────────── */
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-slide-down: slideDown 0.5s ease-out;
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-pulse-glow: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-spin-slow: spin 3s linear infinite;
+
+  /* ─── Extended Spacing ───────────────────────────── */
+  --spacing-18: 4.5rem;
+  --spacing-88: 22rem;
+  --spacing-100: 25rem;
+  --spacing-112: 28rem;
+  --spacing-128: 32rem;
+
+  /* ─── Extended Border Radius ─────────────────────── */
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+}
+
+/* ─── Keyframes ──────────────────────────────────────── */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 212, 255, 0.2), 0 0 10px rgba(0, 212, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 40px rgba(0, 212, 255, 0.2);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Global Base Styles
+ * ────────────────────────────────────────────────────── */
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body – dark gradient background */
+body {
+  background: linear-gradient(135deg, #0a0e1a 0%, #0f1629 50%, #0a0e1a 100%);
+  color: #e5e7eb;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+/* ─── Selection Colors ───────────────────────────────── */
+::selection {
+  background-color: rgba(0, 212, 255, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: rgba(0, 212, 255, 0.3);
+  color: #ffffff;
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Custom Scrollbar (Webkit + Firefox)
+ * ────────────────────────────────────────────────────── */
+
+/* Webkit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1f2937 #0a0e1a;
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Glassmorphism Utility Classes
+ * ────────────────────────────────────────────────────── */
+
+.glass {
+  background: rgba(15, 22, 41, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(10, 14, 26, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-hover {
+  background: rgba(15, 22, 41, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(15, 22, 41, 0.8);
+  border-color: rgba(0, 212, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Glow Effect Classes
+ * ────────────────────────────────────────────────────── */
+
+.glow-blue {
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3), 0 0 30px rgba(0, 212, 255, 0.1);
+}
+
+.glow-green {
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3), 0 0 30px rgba(0, 255, 136, 0.1);
+}
+
+.glow-purple {
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.3), 0 0 30px rgba(124, 58, 237, 0.1);
+}
+
+/* ─── Text glow variants ─────────────────────────────── */
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(124, 58, 237, 0.5), 0 0 20px rgba(124, 58, 237, 0.3);
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Cyber Grid Background
+ * ────────────────────────────────────────────────────── */
+
+.cyber-grid {
+  background-image: linear-gradient(
+      rgba(0, 212, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Gradient Border Utility
+ * ────────────────────────────────────────────────────── */
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #00d4ff, #7c3aed, #00ff88);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Shimmer Loading Skeleton
+ * ────────────────────────────────────────────────────── */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(31, 41, 55, 0.5) 25%,
+    rgba(55, 65, 81, 0.5) 50%,
+    rgba(31, 41, 55, 0.5) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+  border-radius: 0.5rem;
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Smooth Transitions (global)
+ * ────────────────────────────────────────────────────── */
+
+a,
+button {
+  transition: color 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Focus ring for accessibility
+ * ────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid #00d4ff;
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────
+ *  Hide scrollbar utility (for horizontal carousels etc.)
+ * ────────────────────────────────────────────────────── */
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
